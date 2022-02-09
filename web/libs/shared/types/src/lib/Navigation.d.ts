@@ -5,12 +5,9 @@ export type ToolTypes = CornerstoneToolNames;
 export type MeasurementTools =
   | CornerstoneToolNames.CircleRoi
   | CornerstoneToolNames.EllipticalRoi
-  | CornerstoneToolNames.FreehandRoi
-  | CornerstoneToolNames.FreehandRoiSculptor
-  | CornerstoneToolNames.RectangleRoi
-  | CornerstoneToolNames.Brush
-  | CornerstoneToolNames.SphericalBrush
-  | CornerstoneToolNames.EfficientBrush;
+  | CornerstoneToolNames.PlanarFreehandROI
+  | CornerstoneToolNames.RectangleROI
+  | CornerstoneToolNames.Brush;
 
 export type MouseButtonTypes = 'left' | 'right' | 'center' | 'none';
 
