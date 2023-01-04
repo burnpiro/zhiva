@@ -54,15 +54,29 @@ Run `npx nx g @nrwl/react:app app` to generate an application.
 
 When using Nx, you can create multiple applications and libraries in the same workspace.
 
-## Generate a library
+## Generate TS library
 
-Run `npx nx g @nrwl/react:lib my-lib --appProject=app --pascalCaseFiles=true --publishable=true --importPath=@zhiva/components --buildable=true` to generate a library.
+Run `npx nx g @nrwl/js:library my-lib --appProject=app --pascalCaseFiles=true --publishable=true --importPath=@zhiva/my-lib --buildable=true` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
 Libraries are shareable across libraries and applications. They can be imported from `@zhiva/my-lib`.
 
-## Generate component
+## Generate TS component
+
+Run `npx nx g @nrwl/js:component Button --project=my-lib --pascalCaseDirectory=true --pascalCaseFiles=true --export=true` to generate a new component.
+
+`--export=true` should be used when your component should be imported by other applications/libraries.
+
+## Generate React library
+
+Run `npx nx g @nrwl/react:lib my-lib --appProject=app --pascalCaseFiles=true --publishable=true --importPath=@zhiva/my-lib --buildable=true` to generate a library.
+
+> You can also use any of the plugins above to generate libraries as well.
+
+Libraries are shareable across libraries and applications. They can be imported from `@zhiva/my-lib`.
+
+## Generate React component
 
 Run `npx nx g @nrwl/react:component Button --project=my-lib --pascalCaseDirectory=true --pascalCaseFiles=true --export=true` to generate a new component.
 

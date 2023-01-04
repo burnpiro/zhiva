@@ -8,22 +8,32 @@
     "test": "nx test"
   },
   "engines": {
-    "node": "18"
+    "node": "16"
   },
   "private": true,
   "dependencies": {
+    "@cornerstonejs/core": "^0.14.0",
+    "@cornerstonejs/streaming-image-volume-loader": "^0.4.12",
+    "@cornerstonejs/tools": "^0.21.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
     "core-js": "^3.6.5",
+    "cornerstone-wado-image-loader": "^4.2.0",
+    "dcmjs": "^0.24.8",
+    "detect-gpu": "^4.0.33",
+    "dicom-parser": "^1.8.13",
     "notistack": "^2.0.5",
+    "query-string": "^7.1.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-dropzone": "^14.2.2",
     "react-router-dom": "6.3.0",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.3.0",
-    "use-ua-parser-js": "^1.1.3"
+    "use-ua-parser-js": "^1.1.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
@@ -51,6 +61,7 @@
     "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
     "@types/react-router-dom": "5.3.3",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "~5.24.0",
     "@typescript-eslint/parser": "~5.24.0",
     "babel-jest": "27.5.1",

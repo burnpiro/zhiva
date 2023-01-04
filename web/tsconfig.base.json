@@ -15,13 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@zhiva/cornerstone3d-react-viewport": [
+        "libs/ui/cornerstone3d-react-viewport/src/index.ts"
+      ],
+      "@zhiva/dicom-dropzone": ["libs/ui/dicom-dropzone/src/index.ts"],
       "@zhiva/services-snackbar": ["libs/services/snackbar/src/index.ts"],
       "@zhiva/shared/constants": ["libs/shared/constants/src/index.ts"],
       "@zhiva/storybook": ["libs/storybook/src/index.ts"],
       "@zhiva/types": ["libs/shared/types/src/index.ts"],
       "@zhiva/ui-components": ["libs/ui/components/src/index.ts"],
+      "@zhiva/utils-cornerstone": ["libs/shared/cornerstone/src/index.ts"],
       "@zhiva/viewer-elements": ["libs/ui/viewer-elements/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "include": ["**/*.d.ts"]
 }

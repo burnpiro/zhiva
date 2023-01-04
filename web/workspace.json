@@ -6,12 +6,17 @@
     "app-e2e": "apps/app-e2e",
     "services-snackbar": "libs/services/snackbar",
     "shared-constants": "libs/shared/constants",
+    "shared-cornerstone": "libs/shared/cornerstone",
     "shared-types": "libs/shared/types",
     "snackbar-e2e": "apps/snackbar-e2e",
     "storybook": "libs/storybook",
     "storybook-e2e": "apps/storybook-e2e",
     "ui-components": "libs/ui/components",
     "ui-components-e2e": "apps/ui-components-e2e",
+    "ui-cornerstone3d-react-viewport": "libs/ui/cornerstone3d-react-viewport",
+    "ui-cornerstone3d-react-viewport-e2e": "apps/ui-cornerstone3d-react-viewport-e2e",
+    "ui-dicom-dropzone": "libs/ui/dicom-dropzone",
+    "ui-dicom-dropzone-e2e": "apps/ui-dicom-dropzone-e2e",
     "ui-viewer-elements": "libs/ui/viewer-elements",
     "ui-viewer-elements-e2e": "apps/ui-viewer-elements-e2e"
   }
