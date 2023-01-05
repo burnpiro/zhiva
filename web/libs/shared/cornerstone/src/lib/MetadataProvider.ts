@@ -141,6 +141,7 @@ export class MetadataProvider {
   }
 
   get(query: string, imageId: string, options = { fallback: false }) {
+    console.error(query, imageId, options)
     const instance = this._getInstance(imageId);
 
     if (query === INSTANCE) {
@@ -163,6 +164,7 @@ export class MetadataProvider {
     instance: any,
     options = { fallback: false }
   ) {
+    console.log(instance);
     if (!instance) {
       return;
     }
@@ -182,6 +184,7 @@ export class MetadataProvider {
   _getCornerstoneWADOImageLoaderTag(wadoImageLoaderTag: any, instance: any) {
     let metadata;
 
+    console.log(wadoImageLoaderTag)
     switch (wadoImageLoaderTag) {
       case WADO_IMAGE_LOADER_TAGS.GENERAL_SERIES_MODULE:
         const { SeriesDate, SeriesTime } = instance;
@@ -196,12 +199,17 @@ export class MetadataProvider {
         if (SeriesTime) {
           seriesTime = dicomParser.parseTM(SeriesTime);
         }
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAA')
+        console.log(instance);
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAA')
 
         metadata = {
           modality: instance.Modality,
           seriesInstanceUID: instance.SeriesInstanceUID,
           seriesNumber: instance.SeriesNumber,
           studyInstanceUID: instance.StudyInstanceUID,
+          seriesDescription: instance.seriesDescription,
+          studyDescription: instance.StudyDescription,
           seriesDate,
           seriesTime,
         };
@@ -494,7 +502,11 @@ const metadataProvider = new MetadataProvider();
 
 export default metadataProvider;
 
-const WADO_IMAGE_LOADER_TAGS = {
+export {
+  metadataProvider
+};
+
+export const WADO_IMAGE_LOADER_TAGS = {
   // CornerstoneWADOImageLoader specific
   GENERAL_SERIES_MODULE: 'generalSeriesModule',
   PATIENT_STUDY_MODULE: 'patientStudyModule',
@@ -513,4 +525,4 @@ const WADO_IMAGE_LOADER_TAGS = {
   CINE_MODULE: 'cineModule',
 };
 
-const INSTANCE = 'instance';
+export const INSTANCE = 'instance';
