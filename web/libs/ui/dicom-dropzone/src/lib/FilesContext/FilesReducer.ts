@@ -11,6 +11,61 @@ type ActionMap<M extends { [index: string]: any }> = {
       };
 };
 
+export type InstanceMetadata = InstanceUIDs & {
+  AccessionNumber: string;
+  AcquisitionDate: string;
+  AcquisitionNumber: string;
+  AngioFlag: string;
+  BitsAllocated: string;
+  BitsStored: string;
+  BodyPartExamined: string;
+  Columns: string;
+  ContentDate: string;
+  FrameOfReferenceUID: string;
+  HighBit: string;
+  ImageOrientationPatient: string;
+  ImagePositionPatient: string;
+  ImageType: string;
+  InstanceCreationDate: string;
+  InstanceCreationTime: string;
+  InstanceNumber: string;
+  InstitutionAddress: string;
+  InstitutionName: string;
+  InstitutionalDepartmentName: string;
+  LargestImagePixelValue: string;
+  MRAcquisitionType: string;
+  Manufacturer: string;
+  ManufacturerModelName: string;
+  Modality: string;
+  PatientAge: string;
+  PatientSize: string;
+  PatientWeight: string;
+  PixelRepresentation: string;
+  PixelSpacing: string;
+  ReferringPhysicianName: string;
+  Rows: string;
+  SOPClassUID: string;
+  SOPInstanceUID: string;
+  ScanningSequence: string;
+  SequenceName: string;
+  SequenceVariant: string;
+  SeriesDate: string;
+  SeriesDescription: string;
+  SeriesInstanceUID: string;
+  SeriesNumber: string;
+  SliceThickness: string;
+  SmallestImagePixelValue: string;
+  SpecificCharacterSet: string;
+  StudyDate: string;
+  StudyDescription: string;
+  StudyID: string;
+  StudyInstanceUID: string;
+  TimezoneOffsetFromUTC: string;
+  WindowCenter: string;
+  WindowWidth: string;
+  imageId: string;
+};
+
 export enum FileActionTypes {
   SET_FILES_TO_LOAD = 'SET_FILES_TO_LOAD',
   ADD_FILES_TO_LOAD = 'ADD_FILES_TO_LOAD',
@@ -18,21 +73,14 @@ export enum FileActionTypes {
   ADD_LOADED_FILES = 'ADD_LOADED_FILES',
   REMOVE_LOADED_FILES = 'REMOVE_LOADED_FILES',
   SET_LOADING = 'SET_LOADING',
+  SET_ERROR = 'SET_ERROR',
 }
-
-export type InstanceMetadata = InstanceUIDs & {
-  seriesNumber: number;
-  modality: Modality;
-  sliceLocation: number;
-  seriesDescription: string;
-  studyDescription: string;
-  imageId: string;
-};
 
 export type FilesState = {
   filesToLoad: Set<File>;
   loadedFiles: Map<string, InstanceMetadata>;
   isLoading: boolean;
+  isError: boolean;
 };
 
 type FilesPayload = {
@@ -53,6 +101,9 @@ type FilesPayload = {
   };
   [FileActionTypes.SET_LOADING]: {
     isLoading: boolean;
+  };
+  [FileActionTypes.SET_ERROR]: {
+    isError: boolean;
   };
 };
 
@@ -127,6 +178,11 @@ export const filesReducer = (state: FilesState, action: FilesActions) => {
       return {
         ...state,
         isLoading: action.payload.isLoading,
+      };
+    case FileActionTypes.SET_ERROR:
+      return {
+        ...state,
+        isError: action.payload.isError,
       };
     default:
       return state;

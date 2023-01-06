@@ -9,6 +9,7 @@ import React, {
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import { loadImage } from '@cornerstonejs/core/dist/esm/imageLoader';
 import { extractInstanceData } from '@zhiva/utils-cornerstone';
+import { SnackbarGenerator } from '@zhiva/services-snackbar';
 
 import {
   FileActionTypes,
@@ -18,20 +19,15 @@ import {
   InstanceMetadata,
 } from './FilesReducer';
 
-type InitialStateType = {
-  filesToLoad: Set<File>;
-  loadedFiles: Map<string, InstanceMetadata>;
-  isLoading: boolean;
-};
-
 const initialState: FilesState = {
   filesToLoad: new Set(),
   loadedFiles: new Map(),
   isLoading: false,
+  isError: false,
 };
 
 const FilesContext = createContext<{
-  state: InitialStateType;
+  state: FilesState;
   dispatch: Dispatch<FilesActions>;
   queueFiles: (files: File[]) => void;
 }>({
@@ -67,6 +63,19 @@ const FilesProvider = ({ children }: { children: ReactNode }) => {
           },
         });
       } catch (e) {
+        SnackbarGenerator.error(`Cannot process file: ${firstFile.name}`);
+        dispatch({
+          type: FileActionTypes.SET_LOADING,
+          payload: {
+            isLoading: false,
+          },
+        });
+        dispatch({
+          type: FileActionTypes.SET_ERROR,
+          payload: {
+            isError: true,
+          },
+        });
         console.error(e);
       }
     };
