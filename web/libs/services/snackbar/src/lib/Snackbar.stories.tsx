@@ -1,6 +1,6 @@
 import { ComponentStory, Meta } from '@storybook/react';
 import { Button } from '@zhiva/ui-components';
-import SnackbarGenerator from './SnackbarGenerator/SnackbarGenerator';
+import { SnackbarGenerator } from './SnackbarGenerator/SnackbarGenerator';
 import { useSnackbar, VariantType } from 'notistack';
 
 type SnackbarProps = {
@@ -27,7 +27,7 @@ const SnackbarComponent = ({
 
 export default {
   // component: SnackbarComponent,
-  title: 'Snackbar',
+  title: 'UTILS/Snackbar',
   argTypes: {
     variant: {
       control: 'select',

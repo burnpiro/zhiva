@@ -19,4 +19,4 @@ const SnackbarGenerator = {
   },
 };
 
-export default SnackbarGenerator;
+export { SnackbarGenerator };
