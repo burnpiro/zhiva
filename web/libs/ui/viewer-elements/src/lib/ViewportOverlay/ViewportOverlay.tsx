@@ -1,12 +1,8 @@
 import { styled } from '@mui/material/styles';
 import { metaData } from '@cornerstonejs/core';
-import {
-  formatDA,
-  formatPN,
-  formatTM,
-} from '@zhiva/utils-cornerstone';
+import { formatDA, formatPN, formatTM } from '@zhiva/utils-cornerstone';
 import { getCompression } from './helpers/getCompression';
-import {WADO_IMAGE_LOADER_TAGS} from "@zhiva/shared/constants";
+import { WADO_IMAGE_LOADER_TAGS } from '@zhiva/shared/constants';
 
 const PREFIX = 'ViewportOverlay';
 
@@ -78,9 +74,6 @@ export function ViewportOverlay({
   const { seriesNumber, seriesDescription } =
     metaData.get(WADO_IMAGE_LOADER_TAGS.GENERAL_SERIES_MODULE, imageId) || {};
 
-  const { instanceNumber } =
-    metaData.get(WADO_IMAGE_LOADER_TAGS.GENERAL_IMAGE_MODULE, imageId) || {};
-
   const { rows, columns, sliceThickness, sliceLocation } =
     metaData.get(WADO_IMAGE_LOADER_TAGS.IMAGE_PLANE_MODULE, imageId) || {};
 
@@ -104,9 +97,7 @@ export function ViewportOverlay({
       <VPElement className={classes.bottomRight}>
         <div>{seriesNumber >= 0 ? `Ser: ${seriesNumber}` : ''}</div>
         <div>
-          {stackSize > 1
-            ? `Img: ${instanceNumber || ''} ${imageIdIndex + 1}/${stackSize}`
-            : ''}
+          {stackSize > 1 ? `Img: ${imageIdIndex + 1}/${stackSize}` : ''}
         </div>
         <div>
           {frameRate > 0 ? `${frameRate} FPS` : ''}
