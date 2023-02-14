@@ -1,7 +1,8 @@
 import { Enums, utilities } from '@cornerstonejs/tools';
+import { Events } from '@cornerstonejs/core/dist/esm/enums';
 
 export type FunctionListener = {
-  event: Enums.Events | utilities.cine.Events;
+  event: Enums.Events | utilities.cine.Events | Events;
   callback: (event: any) => void;
 };
 
