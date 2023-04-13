@@ -1,15 +1,4 @@
-import { InstanceUIDs, Modality } from '@zhiva/types';
-
-type ActionMap<M extends { [index: string]: any }> = {
-  [Key in keyof M]: M[Key] extends undefined
-    ? {
-        type: Key;
-      }
-    : {
-        type: Key;
-        payload: M[Key];
-      };
-};
+import { ActionMap, InstanceUIDs } from '@zhiva/types';
 
 export type InstanceMetadata = InstanceUIDs & {
   AccessionNumber: string;
@@ -111,7 +100,6 @@ export type FilesActions =
   ActionMap<FilesPayload>[keyof ActionMap<FilesPayload>];
 
 export const filesReducer = (state: FilesState, action: FilesActions) => {
-  console.log(action);
   switch (action.type) {
     case FileActionTypes.SET_FILES_TO_LOAD:
       return {
