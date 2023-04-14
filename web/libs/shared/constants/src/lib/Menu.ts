@@ -1,3 +1,5 @@
+import { MouseBindings } from '@cornerstonejs/tools/dist/esm/enums';
+
 export enum CornerstoneToolNames {
   // Basic
   Magnify = 'Magnify',
@@ -30,6 +32,27 @@ export enum CornerstoneToolNames {
   Brush = 'Brush',
 }
 
+export enum ElementTypes {
+  Button,
+  Divider,
+  Select,
+  Component,
+}
+
+export enum MouseButtonTypes {
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center',
+  NONE = 'none',
+}
+
+export const MouseBindingMappings: Record<MouseButtonTypes, MouseBindings> = {
+  [MouseButtonTypes.LEFT]: MouseBindings.Primary,
+  [MouseButtonTypes.RIGHT]: MouseBindings.Secondary,
+  [MouseButtonTypes.CENTER]: MouseBindings.Auxiliary,
+  [MouseButtonTypes.NONE]: MouseBindings.Fifth_Button,
+};
+
 export enum MenuItems {
   SeriesList = 'SeriesList',
   PlayTools = 'PlayTools',
@@ -49,22 +72,30 @@ export const AssignedToolKeys = {
 };
 
 export const ToolDisplayNames = {
-  [MenuItems.SeriesList]: 'Show Series List',
-  [CornerstoneToolNames.Wwwc]: `Windowing (${AssignedToolKeys[CornerstoneToolNames.Wwwc].toUpperCase()})`,
+  [MenuItems.SeriesList]: 'Series List',
+  [CornerstoneToolNames.Wwwc]: `Windowing (${AssignedToolKeys[
+    CornerstoneToolNames.Wwwc
+  ].toUpperCase()})`,
   [CornerstoneToolNames.StackScroll]: `Stack Scroll`,
-  [CornerstoneToolNames.Zoom]: `Zoom (${AssignedToolKeys[CornerstoneToolNames.Zoom].toUpperCase()})`,
-  [CornerstoneToolNames.Pan]: `Pan (${AssignedToolKeys[CornerstoneToolNames.Pan].toUpperCase()})`,
+  [CornerstoneToolNames.Zoom]: `Zoom (${AssignedToolKeys[
+    CornerstoneToolNames.Zoom
+  ].toUpperCase()})`,
+  [CornerstoneToolNames.Pan]: `Pan (${AssignedToolKeys[
+    CornerstoneToolNames.Pan
+  ].toUpperCase()})`,
   [CornerstoneToolNames.TrackballRotate]: `Rotate`,
-  [CornerstoneToolNames.Length]: `Measure Length (${AssignedToolKeys[CornerstoneToolNames.Length].toUpperCase()})`,
+  [CornerstoneToolNames.Length]: `Measure Length (${AssignedToolKeys[
+    CornerstoneToolNames.Length
+  ].toUpperCase()})`,
   [CornerstoneToolNames.RectangleROI]: `Rectangle ROI (${AssignedToolKeys[
     CornerstoneToolNames.RectangleROI
-    ].toUpperCase()})`,
+  ].toUpperCase()})`,
   [CornerstoneToolNames.PlanarFreehandROI]: `Freehand ROI (${AssignedToolKeys[
     CornerstoneToolNames.PlanarFreehandROI
-    ].toUpperCase()})`,
+  ].toUpperCase()})`,
   [CornerstoneToolNames.Brush]: `Brush Seg. (${AssignedToolKeys[
     CornerstoneToolNames.Brush
-    ].toUpperCase()})`,
+  ].toUpperCase()})`,
   [MenuItems.PlayTools]: 'Toggle Play Tools',
   [MenuItems.SegmentationList]: 'Segmentation',
   [MenuItems.AnnotationList]: 'Annotations List',
