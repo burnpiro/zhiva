@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -12,6 +12,7 @@ import {
   globalTypes as defaultGlobalTypes,
   decorators as defaultDecorators,
 } from '../../../.storybook/preview';
+import { initCornerstone } from '@zhiva/utils-cornerstone';
 
 export const ThemeDecorator = (Story) => (
   <StyledEngineProvider injectFirst>
@@ -21,6 +22,7 @@ export const ThemeDecorator = (Story) => (
     </ThemeProvider>
   </StyledEngineProvider>
 );
+
 export const SnackbarDecorator = (Story) => (
   <SnackbarProvider
     classes={{
@@ -35,10 +37,26 @@ export const SnackbarDecorator = (Story) => (
   </SnackbarProvider>
 );
 
+export const CornerstoneDecorator = (Story) => {
+  const [isLoadingCS, setIsLoadingCS] = useState(true);
+  useEffect(() => {
+    const loadCornerstone = async () => {
+      await initCornerstone();
+
+      setIsLoadingCS(false);
+    };
+    window.parent.document.getElementById('storybook-preview-iframe').setAttribute('allow', 'cross-origin-isolated');
+
+    loadCornerstone();
+  }, []);
+  return <Story csLoaded={!isLoadingCS} />;
+};
+
 export const decorators = [
   ...defaultDecorators,
   ThemeDecorator,
   SnackbarDecorator,
+  CornerstoneDecorator,
 ];
 
 export const parameters = {
