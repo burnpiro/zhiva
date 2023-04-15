@@ -16,6 +16,7 @@ type MenuItem = {
   itemKey: string;
   name?: string;
   icon?: React.ReactElement;
+  IconClass?: React.ElementType;
   iconPosition?: 'left' | 'right';
   disabled?: boolean;
 };
@@ -25,7 +26,10 @@ export interface MenuSelectorProps {
   mainIcon?: React.ReactElement;
   onSelect?: SelectActionMethod;
   name: string;
+  toolKey?: string;
+  replaceWithSelectedIcon?: boolean;
   items?: MenuItem[];
+  activeItems?: string[];
   disabled?: boolean;
 }
 
@@ -33,16 +37,22 @@ const DefaultIcon = <MenuIcon />;
 
 export function MenuSelector({
   name,
+  toolKey,
   disabled,
   mainIcon = DefaultIcon,
   items = [],
+  replaceWithSelectedIcon,
+  activeItems,
   onSelect,
 }: MenuSelectorProps) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLButtonElement | null>(
     null
   );
 
-  const openMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const openMenu = (
+    toolKey: string,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     setMenuAnchorEl(event.currentTarget);
   };
 
@@ -54,7 +64,7 @@ export function MenuSelector({
     (acc: Record<string, () => void>, item) => {
       acc[item.itemKey] = () => {
         if (onSelect) {
-          onSelect(item.itemKey);
+          onSelect(toolKey || '', item.itemKey);
         }
         closeMenu();
       };
@@ -63,12 +73,23 @@ export function MenuSelector({
     {}
   );
 
+  const selectedItems = items.filter((item) =>
+    activeItems?.includes(item.itemKey)
+  );
+
+  const selectedIcon =
+    replaceWithSelectedIcon && selectedItems.length === 1
+      ? selectedItems.map(({ icon, IconClass }) =>
+          IconClass != null ? <IconClass /> : icon
+        )[0]
+      : mainIcon;
+
   return (
     <>
       <ToolButton
         name={name}
         isActive={!disabled}
-        customIcon={mainIcon}
+        customIcon={selectedIcon}
         disabled={disabled}
         size={'large'}
         fontSize={'medium'}
@@ -81,23 +102,42 @@ export function MenuSelector({
         open={Boolean(menuAnchorEl)}
         onClose={closeMenu}
       >
-        {items.map(({ itemKey, name, icon, iconPosition, disabled }) => (
-          <StyledMenuItem key={itemKey} onClick={clickHandlers[itemKey]}>
-            {icon &&
-              iconPosition !== 'right' &&
-              React.cloneElement(icon, {
-                fontSize: 'medium',
-                color: disabled ? 'disabled' : 'inherit',
-              })}
-            {name}
-            {icon &&
-              iconPosition === 'right' &&
-              React.cloneElement(icon, {
-                fontSize: 'medium',
-                color: disabled ? 'disabled' : 'inherit',
-              })}
-          </StyledMenuItem>
-        ))}
+        {items.map(
+          ({ itemKey, name, icon, IconClass, iconPosition, disabled }) => {
+            const isActive =
+              !disabled && (!activeItems || activeItems?.includes(itemKey));
+
+            return (
+              <StyledMenuItem
+                key={itemKey}
+                onClick={clickHandlers[itemKey]}
+                sx={{ color: !isActive ? 'text.disabled' : 'text.active' }}
+              >
+                {icon &&
+                  iconPosition !== 'right' &&
+                  React.cloneElement(icon, {
+                    fontSize: 'medium',
+                  })}
+                {IconClass && iconPosition !== 'right' && (
+                  <IconClass
+                    fontSize={'medium'}
+                  />
+                )}
+                {name}
+                {icon &&
+                  iconPosition === 'right' &&
+                  React.cloneElement(icon, {
+                    fontSize: 'medium',
+                  })}
+                {IconClass && iconPosition === 'right' && (
+                  <IconClass
+                    fontSize={'medium'}
+                  />
+                )}
+              </StyledMenuItem>
+            );
+          }
+        )}
       </Menu>
     </>
   );
