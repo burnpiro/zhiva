@@ -6,15 +6,18 @@ const {
   segmentation,
 } = cornerstoneTools;
 
-import { Segmentation } from '../segmentation/Segmentation';
+import { Segmentation } from '../segmentation';
 
 class ToolGroupService {
   public static async addSegmentationsToToolGroup(
     segList: Segmentation[],
     toolGroupId: string
   ): Promise<string[]> {
+    const toolGroupRepresentation =
+      segmentation.state.getSegmentationRepresentations(toolGroupId);
     const nonExistingSegRepresentations = segList.filter(
       (seg) =>
+        !toolGroupRepresentation ||
         !segmentation.state.getSegmentationRepresentationByUID(
           toolGroupId,
           seg.id
@@ -33,3 +36,5 @@ class ToolGroupService {
     return [];
   }
 }
+
+export { ToolGroupService };
