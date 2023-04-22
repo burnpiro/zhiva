@@ -17,8 +17,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { FilesContext } from './FilesContext/FilesContext';
-import { FileActionTypes } from './FilesContext/FilesReducer';
+import { FilesContext, FileActionTypes } from '@zhiva/react-contexts';
 
 const getColor = (props: {
   isdragaccept?: string;
@@ -58,7 +57,7 @@ const DropContainer = styled('div')((props) => ({
 
 /* eslint-disable-next-line */
 export interface UiDicomDropzoneProps {
-  title: string;
+  title?: string;
 }
 
 function LinearProgressWithLabel(
@@ -180,6 +179,7 @@ export function UiDicomDropzone({
           justifyContent: 'space-between',
           alignItems: 'center',
           pt: 1,
+          pb: 1,
         }}
       >
         <Button
@@ -202,7 +202,7 @@ export function UiDicomDropzone({
           Upload selected
         </Button>
       </ListSubheader>
-      <Collapse in={isOpen}>
+      <Collapse in={isOpen} orientation={'vertical'} easing={'ease-in'} timeout={100}>
         {files.length > 0 && (
           <List
             dense={true}
@@ -215,8 +215,10 @@ export function UiDicomDropzone({
               overflowY: 'auto',
               overflowX: 'hidden',
               maxHeight: 300,
-              mt: 1,
+              pt: 1,
               '& ul': { padding: 0 },
+              zIndex: 1000,
+              boxShadow: 4,
             }}
             subheader={<li />}
           >
