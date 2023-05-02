@@ -14,15 +14,15 @@ Run `npx nx serve app` for a dev server. Navigate to http://localhost:4200/. The
 
 ### For all libraries
 
-`npx nx run storybook:storybook`
+`npm run storybook`
 
 ### For selected library/project
 
-`npx nx run my-lib:storybook`
+`npm run storybook -- my-lib`
 
 ## Build static storybook
 
-`npx nx run storybook:build-storybook`
+`npm run build-storybook -- storybook`
 
 `dist` version will be generated in `dist/storybook/storybook` you can run `npx http-server build/storybook/storybook` to run local HTTP server and check it out.
 
@@ -40,7 +40,7 @@ Run `npx nx affected:e2e` to execute the end-to-end tests affected by a change.
 
 ## Understand your workspace
 
-Run `npx nx graph` to see a diagram of the dependencies of your projects.
+Run `npm run graph` to see a diagram of the dependencies of your projects.
 
 > !!! Important
 >
