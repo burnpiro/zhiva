@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RenderingEngine } from '@cornerstonejs/core';
+import { RenderingEngine, getRenderingEngine } from '@cornerstonejs/core';
 
 export function useRenderingEngine(
   renderingEngine?: string | RenderingEngine
@@ -8,7 +8,12 @@ export function useRenderingEngine(
 
   useEffect(() => {
     if (typeof renderingEngine === 'string') {
-      setEngine(new RenderingEngine(renderingEngine));
+      const existingRenderingEngine = getRenderingEngine(renderingEngine);
+      if (existingRenderingEngine) {
+        setEngine(existingRenderingEngine as RenderingEngine);
+      } else {
+        setEngine(new RenderingEngine(renderingEngine));
+      }
     } else if (renderingEngine instanceof RenderingEngine) {
       setEngine(renderingEngine);
     }
