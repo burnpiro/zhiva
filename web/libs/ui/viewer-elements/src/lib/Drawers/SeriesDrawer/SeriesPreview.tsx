@@ -52,7 +52,6 @@ const SeriesPreview: FC<SeriesPreviewProps> = ({
     loadImage();
   }, [instance.imageId, canvasRef.current]);
 
-  console.log(instance);
   return (
     <Box
       style={{

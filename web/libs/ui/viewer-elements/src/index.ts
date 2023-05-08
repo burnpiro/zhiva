@@ -5,3 +5,4 @@ export * from './lib/MenuSelector/MenuSelector';
 export * from './lib/FrameRateControl/FrameRateControl';
 export * from './lib/ToolButton/ToolButton';
 export * from './lib/ViewerMenu/ViewerMenu';
+export * from './lib/Drawers';
