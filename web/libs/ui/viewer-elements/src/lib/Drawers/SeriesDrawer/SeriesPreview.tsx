@@ -58,12 +58,13 @@ const SeriesPreview: FC<SeriesPreviewProps> = ({
         cursor: onClick != null ? 'pointer' : 'default',
         position: 'relative',
       }}
-      sx={{ width: 230, padding: 2, marginRight: 2 }}
+      sx={{ width: '100%', padding: 2, marginRight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', borderBottom: '1px solid grey' }}
       onClick={onClick}
     >
       {isSelected && (
         <VisibilityOutlinedIcon
           sx={{ position: 'absolute', top: 18, left: 18 }}
+          color={'primary'}
         />
       )}
       {instance.SOPInstanceUID && instance.SOPInstanceUID !== '' ? (
