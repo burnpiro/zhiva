@@ -23,11 +23,10 @@
       "@zhiva/react-contexts": ["libs/shared/contexts/src/index.ts"],
       "@zhiva/services": ["libs/shared/services/src/index.ts"],
       "@zhiva/services-snackbar": ["libs/services/snackbar/src/index.ts"],
-      "@zhiva/shared/constants": ["libs/shared/constants/src/index.ts"],
       "@zhiva/storybook": ["libs/storybook/src/index.ts"],
       "@zhiva/studies-list": ["libs/ui/studies-list/src/index.ts"],
-      "@zhiva/types": ["libs/shared/types/src/index.ts"],
       "@zhiva/ui-components": ["libs/ui/components/src/index.ts"],
+      "@zhiva/utils": ["libs/utils/src/index.ts"],
       "@zhiva/utils-cornerstone": ["libs/shared/cornerstone/src/index.ts"],
       "@zhiva/viewer-elements": ["libs/ui/viewer-elements/src/index.ts"]
     }

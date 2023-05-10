@@ -13,7 +13,6 @@ export function useCSEventDispatchCallback(
 ) {
   const handleEventCallbacks = useCallback(
     (event: { type: Enums.Events; detail: any }) => {
-      console.log(event.type, event.detail);
       switch (event.type) {
         case Enums.Events.IMAGE_LOADED:
           if (onHandlers.onImageLoaded) {
@@ -52,7 +51,6 @@ export function useCSElementEventDispatchCallback(
       type: ToolEnums.Events | ToolUtilities.cine.Events | Enums.Events;
       detail: any;
     }) => {
-      console.log(event.type, event.detail);
       switch (event.type) {
         case ToolUtilities.cine.Events.CLIP_STARTED:
           dispatch({

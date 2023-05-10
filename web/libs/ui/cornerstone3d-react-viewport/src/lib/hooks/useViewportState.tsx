@@ -1,5 +1,5 @@
 import { Dispatch, useReducer } from 'react';
-import { ActionMap } from '@zhiva/types';
+import { ActionMap } from '@zhiva/utils';
 
 export enum ViewportActionTypes {
   SET_STATE = 'SET_STATE',
