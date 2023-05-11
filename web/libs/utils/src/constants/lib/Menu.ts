@@ -1,4 +1,5 @@
-import { MouseBindings } from '@cornerstonejs/tools/dist/esm/enums';
+import { Enums as CSToolEnums } from '@cornerstonejs/tools';
+import {MeasurementToolTypes} from "../../types";
 
 export enum CornerstoneToolNames {
   // Basic
@@ -46,12 +47,27 @@ export enum MouseButtonTypes {
   NONE = 'none',
 }
 
-export const MouseBindingMappings: Record<MouseButtonTypes, MouseBindings> = {
-  [MouseButtonTypes.LEFT]: MouseBindings.Primary,
-  [MouseButtonTypes.RIGHT]: MouseBindings.Secondary,
-  [MouseButtonTypes.CENTER]: MouseBindings.Auxiliary,
-  [MouseButtonTypes.NONE]: MouseBindings.Fifth_Button,
+export const MouseBindingMappings: Record<
+  MouseButtonTypes,
+  CSToolEnums.MouseBindings
+> = {
+  [MouseButtonTypes.LEFT]: CSToolEnums.MouseBindings.Primary,
+  [MouseButtonTypes.RIGHT]: CSToolEnums.MouseBindings.Secondary,
+  [MouseButtonTypes.CENTER]: CSToolEnums.MouseBindings.Auxiliary,
+  [MouseButtonTypes.NONE]: CSToolEnums.MouseBindings.Fifth_Button,
 };
+
+export const MeasurementTools: string[] = [
+  CornerstoneToolNames.Angle,
+  CornerstoneToolNames.ArrowAnnotate,
+  CornerstoneToolNames.Bidirectional,
+  CornerstoneToolNames.CircleScissors,
+  CornerstoneToolNames.Length,
+  CornerstoneToolNames.PlanarFreehandROI,
+  CornerstoneToolNames.RectangleROI,
+  CornerstoneToolNames.RectangleScissors,
+  CornerstoneToolNames.Probe,
+]
 
 export enum MenuItems {
   SeriesList = 'SeriesList',
@@ -59,6 +75,7 @@ export enum MenuItems {
   AnnotationList = 'AnnotationList',
   SegmentationList = 'SegmentationList',
   MetadataList = 'Metadata',
+  SegmentationDialog = 'SegmentationDialog',
 }
 
 export const AssignedToolKeys = {
@@ -83,7 +100,19 @@ export const ToolDisplayNames = {
   [CornerstoneToolNames.Pan]: `Pan (${AssignedToolKeys[
     CornerstoneToolNames.Pan
   ].toUpperCase()})`,
+  [CornerstoneToolNames.Magnify]: `Magnify`,
+  [CornerstoneToolNames.DragProbe]: `Probe`,
+  [CornerstoneToolNames.VolumeRotateMouseWheel]: `Mouse Wheel Rotate`,
+  [CornerstoneToolNames.MIPJumpToClick]: `MIP Jump`,
+  [CornerstoneToolNames.Crosshairs]: `Crosshairs`,
+  [CornerstoneToolNames.Bidirectional]: `Bidirectional`,
   [CornerstoneToolNames.TrackballRotate]: `Rotate`,
+  [CornerstoneToolNames.EllipticalROI]: `Elliptical ROI`,
+  [CornerstoneToolNames.RectangleROIThreshold]: `Rectangle ROI Threshold`,
+  [CornerstoneToolNames.RectangleROIStartEndThreshold]: `Rectangle ROI Start End Threshold`,
+  [CornerstoneToolNames.ArrowAnnotate]: `Arrow Label`,
+  [CornerstoneToolNames.Angle]: `Angle`,
+  [CornerstoneToolNames.RectangleScissors]: `Rectangle Scissors`,
   [CornerstoneToolNames.Length]: `Measure Length (${AssignedToolKeys[
     CornerstoneToolNames.Length
   ].toUpperCase()})`,

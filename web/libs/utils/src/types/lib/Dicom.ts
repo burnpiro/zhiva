@@ -1,58 +1,4 @@
-export type Modality =
-  | 'CR'
-  | 'CT'
-  | 'MR'
-  | 'US'
-  | 'OT'
-  | 'BI'
-  | 'CD'
-  | 'DD'
-  | 'DG'
-  | 'ES'
-  | 'LS'
-  | 'PT'
-  | 'RG'
-  | 'ST'
-  | 'TG'
-  | 'XA'
-  | 'RF'
-  | 'RTIMAGE'
-  | 'RTDOSE'
-  | 'RTSTRUCT'
-  | 'RTPLAN'
-  | 'RTRECORD'
-  | 'HC'
-  | 'DX'
-  | 'NM'
-  | 'MG'
-  | 'IO'
-  | 'PX'
-  | 'GM'
-  | 'SM'
-  | 'XC'
-  | 'PR'
-  | 'AU'
-  | 'EPS'
-  | 'HD'
-  | 'SR'
-  | 'IVUS'
-  | 'OP'
-  | 'SMR'
-  | 'DS'
-  | 'CF'
-  | 'DF'
-  | 'VF'
-  | 'AS'
-  | 'CS'
-  | 'EC'
-  | 'LP'
-  | 'FA'
-  | 'CP'
-  | 'DM'
-  | 'FS'
-  | 'MA'
-  | 'MS'
-  | 'SEG'; // http://dicomlookup.com/modalities.asp
+import {Modality, PREGNANCY_STATUS} from "@zhiva/utils";
 
 export type StudyObj = {
   id: string;
@@ -175,7 +121,7 @@ export type InstanceMetadataObj = SeriesObj & {
 };
 
 export type InstanceUIDs = {
-  StudyInstanceUID: StudyInstance['StudyInstanceUID'];
+  StudyInstanceUID: SeriesObj['StudyInstanceUID'];
   SeriesInstanceUID: SeriesObj['SeriesInstanceUID'];
   SOPInstanceUID: InstanceMetadataObj['SOPInstanceUID'];
 };
@@ -184,4 +130,59 @@ export type OptionalInstanceUIDs = {
   StudyInstanceUID: InstanceUIDs['StudyInstanceUID'];
   SeriesInstanceUID?: InstanceUIDs['SeriesInstanceUID'];
   SOPInstanceUID?: InstanceUIDs['SOPInstanceUID'];
+};
+
+export type InstanceMetadata = InstanceUIDs & {
+  AccessionNumber: string;
+  AcquisitionDate: string;
+  AcquisitionNumber: string;
+  AngioFlag: string;
+  BitsAllocated: string;
+  BitsStored: string;
+  BodyPartExamined: string;
+  Columns: string;
+  ContentDate: string;
+  FrameOfReferenceUID: string;
+  HighBit: string;
+  ImageOrientationPatient: string;
+  ImagePositionPatient: string;
+  ImageType: string;
+  InstanceCreationDate: string;
+  InstanceCreationTime: string;
+  InstanceNumber: string;
+  InstitutionAddress: string;
+  InstitutionName: string;
+  InstitutionalDepartmentName: string;
+  LargestImagePixelValue: string;
+  MRAcquisitionType: string;
+  Manufacturer: string;
+  ManufacturerModelName: string;
+  Modality: string;
+  PatientAge: string;
+  PatientSize: string;
+  PatientWeight: string;
+  PixelRepresentation: string;
+  PixelSpacing: string;
+  ReferringPhysicianName: string;
+  Rows: string;
+  SOPClassUID: string;
+  SOPInstanceUID: string;
+  ScanningSequence: string;
+  SequenceName: string;
+  SequenceVariant: string;
+  SeriesDate: string;
+  SeriesDescription: string;
+  SeriesInstanceUID: string;
+  SeriesNumber: string;
+  SliceThickness: string;
+  SmallestImagePixelValue: string;
+  SpecificCharacterSet: string;
+  StudyDate: string;
+  StudyDescription: string;
+  StudyID: string;
+  StudyInstanceUID: string;
+  TimezoneOffsetFromUTC: string;
+  WindowCenter: string;
+  WindowWidth: string;
+  imageId: string;
 };

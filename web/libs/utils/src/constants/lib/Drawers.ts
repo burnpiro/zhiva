@@ -2,6 +2,9 @@ import type { SlideProps } from '@mui/material';
 
 export enum DrawerWidths {
   DEFAULT = 290,
+  SERIES = 244,
+  ANNOTATION = 290,
+  SEGMENTATION= 250,
 }
 
 export enum DrawerHeights {

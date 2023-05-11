@@ -1,8 +1,8 @@
 import { Enums, utilities } from '@cornerstonejs/tools';
-import { Events } from '@cornerstonejs/core/dist/esm/enums';
+import { Enums as CSEnums } from '@cornerstonejs/core';
 
-export type FunctionListener = {
-  event: Enums.Events | utilities.cine.Events | Events;
+type FunctionListener = {
+  event: Enums.Events | utilities.cine.Events | CSEnums.Events;
   callback: (event: any) => void;
 };
 

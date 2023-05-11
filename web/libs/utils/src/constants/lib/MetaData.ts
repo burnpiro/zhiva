@@ -1,5 +1,3 @@
-
-
 export const WADO_IMAGE_LOADER_TAGS = {
   // CornerstoneWADOImageLoader specific
   GENERAL_SERIES_MODULE: 'generalSeriesModule',

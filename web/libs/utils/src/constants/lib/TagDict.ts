@@ -1,4 +1,9 @@
-import {TagElement} from "../../../cornerstone/src/lib/extractInstanceData";
+export type TagElement = {
+  tag: string;
+  vr: string;
+  vm: string;
+  name: string;
+};
 
 export const TAG_DICT: Record<
   string,
