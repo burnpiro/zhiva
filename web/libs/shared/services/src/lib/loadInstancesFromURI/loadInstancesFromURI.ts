@@ -3,7 +3,7 @@ import * as dcmjs from 'dcmjs';
 import { utilities } from '@cornerstonejs/core';
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import { calculateSUVScalingFactors } from '@cornerstonejs/calculate-suv';
-import { InstanceUIDs } from '@zhiva/types';
+import { InstanceUIDs } from '@zhiva/utils';
 import {
   WADORSHeaderProvider,
   getPixelSpacingInformation,
