@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { SegmentationService } from '@zhiva/services';
-import { InstanceUIDs } from '@zhiva/types';
+import { InstanceUIDs } from '@zhiva/utils';
 const SegmentationContext = createContext<{
   segmentationServices: Record<
     InstanceUIDs['StudyInstanceUID'],

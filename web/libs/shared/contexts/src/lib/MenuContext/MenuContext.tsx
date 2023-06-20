@@ -1,7 +1,7 @@
 import React, { createContext, Dispatch, ReactNode, useReducer } from 'react';
 
 import { MenuActions, MenuActionTypes, menuReducer } from './MenuReducer';
-import { DicomMenu, DicomMenuItem } from '@zhiva/types';
+import { DicomMenu, DicomMenuItem } from '@zhiva/utils';
 import {
   CornerstoneToolNames,
   ElementTypes,
@@ -9,132 +9,13 @@ import {
   MouseBindingMappings,
   MouseButtonTypes,
   ToolDisplayNames,
-} from '@zhiva/shared/constants';
-import { MouseBindings, ToolModes } from '@cornerstonejs/tools/dist/esm/enums';
-import { FrameRateControl, ToolIcons } from '@zhiva/viewer-elements';
-import { MouseClickedIcon } from '@zhiva/ui-components';
-import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
-import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
-import FormatShapesOutlinedIcon from '@mui/icons-material/FormatShapesOutlined';
-import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
-import HighlightAlt from '@mui/icons-material/HighlightAlt';
-import ListIcon from '@mui/icons-material/RecentActorsOutlined';
+} from '@zhiva/utils';
+import { Enums as CSToolsEnums } from '@cornerstonejs/tools';
 
 export const MOUSE_ITEM_TOOL_KEY = 'mouse';
 export const DRAWERS_ITEM_TOOL_KEY = 'drawers';
+export const DIALOGS_ITEM_TOOL_KEY = 'dialogs';
 export const ANNOTATION_ITEM_TOOL_KEY = 'annotations';
-
-export const DefaultMenuElements: DicomMenuItem[] = [
-  {
-    type: ElementTypes.Button,
-    name: 'Selected Mouse Button',
-    toolKey: MOUSE_ITEM_TOOL_KEY,
-    customIcon: <MouseClickedIcon side={MouseButtonTypes.LEFT} />,
-    args: {
-      fontSize: 'large',
-    },
-  },
-  {
-    toolKey: 'divide-mouse',
-    type: ElementTypes.Divider,
-  },
-  {
-    type: ElementTypes.Button,
-    toolKey: CornerstoneToolNames.Wwwc,
-    name: ToolDisplayNames[CornerstoneToolNames.Wwwc],
-  },
-  {
-    type: ElementTypes.Button,
-    toolKey: CornerstoneToolNames.StackScroll,
-    name: ToolDisplayNames[CornerstoneToolNames.StackScroll],
-  },
-  {
-    type: ElementTypes.Button,
-    toolKey: CornerstoneToolNames.Zoom,
-    name: ToolDisplayNames[CornerstoneToolNames.Zoom],
-  },
-  {
-    type: ElementTypes.Button,
-    toolKey: CornerstoneToolNames.Pan,
-    name: ToolDisplayNames[CornerstoneToolNames.Pan],
-  },
-  {
-    type: ElementTypes.Button,
-    toolKey: CornerstoneToolNames.Length,
-    name: ToolDisplayNames[CornerstoneToolNames.Length],
-    desktopOnly: true,
-  },
-  {
-    type: ElementTypes.Select,
-    name: 'Annotations',
-    toolKey: ANNOTATION_ITEM_TOOL_KEY,
-    args: {
-      mainIcon: <HighlightAlt />,
-      replaceWithSelectedIcon: true,
-      items: [
-        {
-          itemKey: CornerstoneToolNames.RectangleROI,
-          name: ToolDisplayNames[CornerstoneToolNames.RectangleROI],
-          IconClass: ToolIcons[CornerstoneToolNames.RectangleROI],
-        },
-        {
-          itemKey: CornerstoneToolNames.PlanarFreehandROI,
-          name: ToolDisplayNames[CornerstoneToolNames.PlanarFreehandROI],
-          IconClass: ToolIcons[CornerstoneToolNames.PlanarFreehandROI],
-        },
-        {
-          itemKey: CornerstoneToolNames.Brush,
-          name: ToolDisplayNames[CornerstoneToolNames.Brush],
-          IconClass: ToolIcons[CornerstoneToolNames.Brush],
-        },
-      ],
-    },
-  },
-  {
-    type: ElementTypes.Component,
-    toolKey: 'frameRateSelect',
-    customComponent: (
-      <FrameRateControl
-        isPlaying={false}
-        frameRate={5}
-        onFrameRateChange={() => {}}
-        onIsPlayingChange={() => {}}
-        onResetFrames={() => {}}
-      />
-    ),
-  },
-  {
-    type: ElementTypes.Select,
-    name: 'Panels',
-    toolKey: DRAWERS_ITEM_TOOL_KEY,
-    placement: 'right',
-    args: {
-      mainIcon: <DashboardCustomizeOutlinedIcon />,
-      items: [
-        {
-          itemKey: MenuItems.SeriesList,
-          name: ToolDisplayNames[MenuItems.SeriesList],
-          icon: <ListIcon />,
-        },
-        {
-          itemKey: MenuItems.SegmentationList,
-          name: ToolDisplayNames[MenuItems.SegmentationList],
-          icon: <ScatterPlotIcon />,
-        },
-        {
-          itemKey: MenuItems.AnnotationList,
-          name: ToolDisplayNames[MenuItems.AnnotationList],
-          icon: <FormatShapesOutlinedIcon />,
-        },
-        {
-          itemKey: MenuItems.MetadataList,
-          name: ToolDisplayNames[MenuItems.MetadataList],
-          icon: <StickyNote2OutlinedIcon />,
-        },
-      ],
-    },
-  },
-];
 
 const initialState: DicomMenu = {
   drawers: [
@@ -155,6 +36,12 @@ const initialState: DicomMenu = {
       isShown: false,
     },
   ],
+  dialogs: [
+    {
+      name: MenuItems.SegmentationDialog,
+      isShown: false,
+    },
+  ],
   selectedMouseSide: MouseButtonTypes.LEFT,
   isPlaying: false,
   cineFrameRate: 25,
@@ -164,49 +51,59 @@ const initialState: DicomMenu = {
   tools: [
     {
       name: CornerstoneToolNames.Wwwc,
-      mode: ToolModes.Active,
-      bindings: { mouseButton: MouseBindings.Primary },
+      mode: CSToolsEnums.ToolModes.Active,
+      bindings: { mouseButton: CSToolsEnums.MouseBindings.Primary },
     },
     {
       name: CornerstoneToolNames.StackScroll,
-      mode: ToolModes.Disabled,
+      mode: CSToolsEnums.ToolModes.Disabled,
     },
     {
       name: CornerstoneToolNames.Pan,
-      mode: ToolModes.Active,
-      bindings: { mouseButton: MouseBindings.Auxiliary },
+      mode: CSToolsEnums.ToolModes.Active,
+      bindings: { mouseButton: CSToolsEnums.MouseBindings.Auxiliary },
     },
     {
       name: CornerstoneToolNames.Zoom,
-      mode: ToolModes.Active,
-      bindings: { mouseButton: MouseBindings.Secondary },
+      mode: CSToolsEnums.ToolModes.Active,
+      bindings: { mouseButton: CSToolsEnums.MouseBindings.Secondary },
+    },
+    {
+      name: CornerstoneToolNames.Length,
+      defaultMode: CSToolsEnums.ToolModes.Enabled,
+      mode: CSToolsEnums.ToolModes.Enabled,
     },
     {
       name: CornerstoneToolNames.RectangleROI,
-      defaultMode: ToolModes.Enabled,
-      mode: ToolModes.Enabled,
+      defaultMode: CSToolsEnums.ToolModes.Enabled,
+      mode: CSToolsEnums.ToolModes.Enabled,
     },
     {
       name: CornerstoneToolNames.PlanarFreehandROI,
-      defaultMode: ToolModes.Enabled,
-      mode: ToolModes.Enabled,
+      defaultMode: CSToolsEnums.ToolModes.Enabled,
+      mode: CSToolsEnums.ToolModes.Enabled,
+    },
+    {
+      name: CornerstoneToolNames.ArrowAnnotate,
+      defaultMode: CSToolsEnums.ToolModes.Enabled,
+      mode: CSToolsEnums.ToolModes.Enabled,
     },
     {
       name: CornerstoneToolNames.SegmentationDisplay,
-      defaultMode: ToolModes.Enabled,
-      mode: ToolModes.Enabled,
+      defaultMode: CSToolsEnums.ToolModes.Enabled,
+      mode: CSToolsEnums.ToolModes.Enabled,
     },
     {
       name: CornerstoneToolNames.Brush,
-      defaultMode: ToolModes.Enabled,
-      mode: ToolModes.Enabled,
+      defaultMode: CSToolsEnums.ToolModes.Enabled,
+      mode: CSToolsEnums.ToolModes.Enabled,
     },
     {
       name: CornerstoneToolNames.StackScrollMouseWheel,
-      mode: ToolModes.Active,
+      mode: CSToolsEnums.ToolModes.Active,
     },
   ],
-  menuItems: DefaultMenuElements,
+  menuItems: [],
 };
 
 const MenuContext = createContext<{
@@ -221,8 +118,17 @@ const MenuContext = createContext<{
   selectOption: () => null,
 });
 
-const MenuProvider = ({ children }: { children: ReactNode }) => {
-  const [menu, dispatch] = useReducer(menuReducer, initialState);
+const MenuProvider = ({
+  children,
+  defaultMenu,
+}: {
+  children: ReactNode;
+  defaultMenu: Partial<DicomMenu>;
+}) => {
+  const [menu, dispatch] = useReducer(menuReducer, {
+    ...initialState,
+    ...defaultMenu,
+  });
 
   const selectTool = (toolKey: DicomMenuItem['toolKey']) => {
     if (toolKey === MOUSE_ITEM_TOOL_KEY) {
@@ -240,7 +146,7 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         type: MenuActionTypes.SET_TOOL_STATE,
         payload: {
           tool: toolKey,
-          mode: ToolModes.Active,
+          mode: CSToolsEnums.ToolModes.Active,
           mouseBinding: MouseBindingMappings[menu.selectedMouseSide],
         },
       });
@@ -254,7 +160,17 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         payload: {
           drawer: elementKey,
           isShown: !Boolean(
-            menu.drawers.find((el) => el.name === elementKey)?.isShown
+            menu.drawers.find((el: any) => el.name === elementKey)?.isShown
+          ),
+        },
+      });
+    } else if (menuKey === DIALOGS_ITEM_TOOL_KEY) {
+      dispatch({
+        type: MenuActionTypes.SET_SHOW_DIALOG,
+        payload: {
+          dialog: elementKey,
+          isShown: !Boolean(
+            menu.dialogs.find((el: any) => el.name === elementKey)?.isShown
           ),
         },
       });
@@ -263,7 +179,7 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         type: MenuActionTypes.SET_TOOL_STATE,
         payload: {
           tool: elementKey,
-          mode: ToolModes.Active,
+          mode: CSToolsEnums.ToolModes.Active,
           mouseBinding: MouseBindingMappings[menu.selectedMouseSide],
         },
       });

@@ -8,7 +8,7 @@ import React, {
   useContext,
 } from 'react';
 import { parseFilesToStudies } from '@zhiva/utils-cornerstone';
-import { StudiesList } from '@zhiva/types';
+import { StudiesList } from '@zhiva/utils';
 import { FilesContext } from '@zhiva/react-contexts';
 
 const StudiesContext = createContext<{
