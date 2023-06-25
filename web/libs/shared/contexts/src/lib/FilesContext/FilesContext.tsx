@@ -7,16 +7,16 @@ import React, {
 } from 'react';
 // @ts-ignore
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
-import { loadImage } from '@cornerstonejs/core/dist/esm/imageLoader';
+import { imageLoader } from '@cornerstonejs/core';
 import { extractInstanceData } from '@zhiva/utils-cornerstone';
 import { SnackbarGenerator } from '@zhiva/services-snackbar';
+import {InstanceMetadata} from "@zhiva/utils";
 
 import {
   FileActionTypes,
   FilesActions,
   filesReducer,
   FilesState,
-  InstanceMetadata,
 } from './FilesReducer';
 
 const initialState: FilesState = {
@@ -32,12 +32,12 @@ const FilesContext = createContext<{
   queueFiles: (files: File[]) => void;
 }>({
   state: initialState,
-  dispatch: () => null,
+  dispatch: (action: any) => null,
   queueFiles: () => null,
 });
 
 const FilesProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(filesReducer, initialState);
+  const [state, dispatch] = useReducer(filesReducer, initialState as FilesState);
 
   useEffect(() => {
     const loadFile = async () => {
@@ -45,7 +45,7 @@ const FilesProvider = ({ children }: { children: ReactNode }) => {
       const imageId =
         cornerstoneWADOImageLoader.wadouri.fileManager.add(firstFile);
       try {
-        const image = await loadImage(imageId);
+        const image = await imageLoader.loadImage(imageId);
 
         dispatch({
           type: FileActionTypes.ADD_LOADED_FILES,
