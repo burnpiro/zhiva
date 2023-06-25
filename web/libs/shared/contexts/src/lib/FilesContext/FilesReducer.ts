@@ -1,59 +1,5 @@
-import { ActionMap, InstanceUIDs } from '@zhiva/types';
+import {ActionMap, InstanceMetadata} from '@zhiva/utils';
 
-export type InstanceMetadata = InstanceUIDs & {
-  AccessionNumber: string;
-  AcquisitionDate: string;
-  AcquisitionNumber: string;
-  AngioFlag: string;
-  BitsAllocated: string;
-  BitsStored: string;
-  BodyPartExamined: string;
-  Columns: string;
-  ContentDate: string;
-  FrameOfReferenceUID: string;
-  HighBit: string;
-  ImageOrientationPatient: string;
-  ImagePositionPatient: string;
-  ImageType: string;
-  InstanceCreationDate: string;
-  InstanceCreationTime: string;
-  InstanceNumber: string;
-  InstitutionAddress: string;
-  InstitutionName: string;
-  InstitutionalDepartmentName: string;
-  LargestImagePixelValue: string;
-  MRAcquisitionType: string;
-  Manufacturer: string;
-  ManufacturerModelName: string;
-  Modality: string;
-  PatientAge: string;
-  PatientSize: string;
-  PatientWeight: string;
-  PixelRepresentation: string;
-  PixelSpacing: string;
-  ReferringPhysicianName: string;
-  Rows: string;
-  SOPClassUID: string;
-  SOPInstanceUID: string;
-  ScanningSequence: string;
-  SequenceName: string;
-  SequenceVariant: string;
-  SeriesDate: string;
-  SeriesDescription: string;
-  SeriesInstanceUID: string;
-  SeriesNumber: string;
-  SliceThickness: string;
-  SmallestImagePixelValue: string;
-  SpecificCharacterSet: string;
-  StudyDate: string;
-  StudyDescription: string;
-  StudyID: string;
-  StudyInstanceUID: string;
-  TimezoneOffsetFromUTC: string;
-  WindowCenter: string;
-  WindowWidth: string;
-  imageId: string;
-};
 
 export enum FileActionTypes {
   SET_FILES_TO_LOAD = 'SET_FILES_TO_LOAD',
@@ -99,7 +45,7 @@ type FilesPayload = {
 export type FilesActions =
   ActionMap<FilesPayload>[keyof ActionMap<FilesPayload>];
 
-export const filesReducer = (state: FilesState, action: FilesActions) => {
+export const filesReducer = (state: FilesState, action: FilesActions): FilesState => {
   switch (action.type) {
     case FileActionTypes.SET_FILES_TO_LOAD:
       return {
@@ -125,7 +71,7 @@ export const filesReducer = (state: FilesState, action: FilesActions) => {
         ...state,
         filesToLoad: new Set<File>(
           Array.from(state.filesToLoad).filter(
-            (el) => !action.payload.files.includes(el.name)
+            (el: File) => !action.payload.files.includes(el.name)
           )
         ),
       };
@@ -139,7 +85,7 @@ export const filesReducer = (state: FilesState, action: FilesActions) => {
           ]),
           filesToLoad: new Set<File>(
             Array.from(state.filesToLoad).filter(
-              (el) => !action.payload.files.map((el) => el[0]).includes(el.name)
+              (el: File) => !action.payload.files.map((el: [string, InstanceMetadata]) => el[0]).includes(el.name)
             )
           ),
         };
@@ -149,7 +95,7 @@ export const filesReducer = (state: FilesState, action: FilesActions) => {
         loadedFiles: new Map([...action.payload.files]),
         filesToLoad: new Set<File>(
           Array.from(state.filesToLoad).filter(
-            (el) => !action.payload.files.map((el) => el[0]).includes(el.name)
+            (el: File) => !action.payload.files.map((el: [string, InstanceMetadata]) => el[0]).includes(el.name)
           )
         ),
       };
@@ -158,7 +104,7 @@ export const filesReducer = (state: FilesState, action: FilesActions) => {
         ...state,
         loadedFiles: new Map(
           Array.from(state.loadedFiles).filter(
-            (el) => !action.payload.files.includes(el[0])
+            (el: [string, InstanceMetadata]) => !action.payload.files.includes(el[0])
           )
         ),
       };
