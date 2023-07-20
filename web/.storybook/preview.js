@@ -35,7 +35,7 @@ export const globalTypes = {
   //   defaultValue: 'dark',
   //   toolbar: {
   //     icon: 'circlehollow',
-  //     // Array of plain string values or MenuItem shape (see below)
+  //     // Array of plain string values or DicomMenuItem shape (see below)
   //     items: ['dark'],
   //     // Property that specifies if the name of the item will be displayed
   //     showName: true,
