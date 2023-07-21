@@ -1,11 +1,4 @@
-import { TAG_DICT } from '@zhiva/shared/constants';
-
-export type TagElement = {
-  tag: string;
-  vr: string;
-  vm: string;
-  name: string;
-};
+import { TAG_DICT, TagElement } from '@zhiva/utils';
 
 function getTag(tag: string): TagElement {
   var group = tag.substring(1, 5);
@@ -43,7 +36,7 @@ function escapeSpecialCharacters(str: string = ''): string {
     .replace(/"/g, '&quot;');
 }
 
-export type InstanceMetadata = { [k: string]: string | InstanceMetadata[] };
+export type ParsedMetadata = { [k: string]: string | ParsedMetadata[] };
 
 export function extractInstanceData(dataSet: {
   elements: Record<string, any>;
@@ -54,8 +47,8 @@ export function extractInstanceData(dataSet: {
   int32: (el: string, i?: number) => number;
   double: (el: string, i?: number) => number;
   float: (el: string, i?: number) => number;
-}): InstanceMetadata | undefined {
-  const metaData: InstanceMetadata = {};
+}): ParsedMetadata | undefined {
+  const metaData: ParsedMetadata = {};
   try {
     const keys = Object.keys(dataSet.elements).sort();
 
