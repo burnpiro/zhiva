@@ -126,5 +126,3 @@ export function getPixelSpacingInformation(instance: any): any {
     'Unknown combination of PixelSpacing and ImagerPixelSpacing identified. Unable to determine spacing.'
   );
 }
-
-export default getPixelSpacingInformation;

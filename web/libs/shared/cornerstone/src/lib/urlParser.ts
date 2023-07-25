@@ -1,4 +1,4 @@
-import {OptionalInstanceUIDs} from '@zhiva/types';
+import {OptionalInstanceUIDs} from '@zhiva/utils';
 const urlRegex =
   /(http[s]?:\/\/)?([^/\s]+\/)(.*)?(studies\/)([\w\-.]*)\/(series\/)([\w\-.]*)\/(instances\/)([\w\-.]*)(.*)/;
 

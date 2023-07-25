@@ -1,5 +1,6 @@
 import dcmjs from 'dcmjs';
 import { utilities as csUtils } from '@cornerstonejs/core';
+import { InstanceMetadata } from '@zhiva/utils';
 const metadataHeadersPerImageId: Record<string, any> = {};
 const INSTANCE = 'instance';
 
@@ -7,7 +8,7 @@ const { DicomMessage, DicomMetaDictionary } = dcmjs.data;
 
 function addInstance(
   imageId: string,
-  dicomJSONDatasetOrP10ArrayBuffer: ArrayBuffer
+  dicomJSONDatasetOrP10ArrayBuffer: ArrayBuffer | InstanceMetadata
 ) {
   let dicomJSONDataset;
 
@@ -42,4 +43,7 @@ function get(query: string, imageId: string) {
   }
 }
 
-export default { addInstance, get };
+export const WADORSHeaderProvider = {
+  get,
+  addInstance,
+};

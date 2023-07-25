@@ -14,4 +14,4 @@ function get(type: string, imageId: string) {
   }
 }
 
-export default { addInstance, get };
+export const ptScalingMetaDataProvider = { addInstance, get };

@@ -1,11 +1,11 @@
 import dcmjs from 'dcmjs';
 import * as queryString from 'query-string';
 import * as dicomParser from 'dicom-parser';
-import getPixelSpacingInformation from './getPixelSpacingInformation';
+import {getPixelSpacingInformation} from './getPixelSpacingInformation';
 // import fetchPaletteColorLookupTableData from '../utils/metadataProvider/fetchPaletteColorLookupTableData';
 // import fetchOverlayData from '../utils/metadataProvider/fetchOverlayData';
-import { validNumber } from '@zhiva/utils-cornerstone';
-import { InstanceUIDs } from '@zhiva/types';
+import { validNumber } from './validNumber';
+import {WADO_IMAGE_LOADER_TAGS, InstanceUIDs} from "@zhiva/utils";
 
 export class MetadataProvider {
   datasets: any;
@@ -504,25 +504,6 @@ export default metadataProvider;
 
 export {
   metadataProvider
-};
-
-export const WADO_IMAGE_LOADER_TAGS = {
-  // CornerstoneWADOImageLoader specific
-  GENERAL_SERIES_MODULE: 'generalSeriesModule',
-  PATIENT_STUDY_MODULE: 'patientStudyModule',
-  IMAGE_PLANE_MODULE: 'imagePlaneModule',
-  IMAGE_PIXEL_MODULE: 'imagePixelModule',
-  VOI_LUT_MODULE: 'voiLutModule',
-  MODALITY_LUT_MODULE: 'modalityLutModule',
-  SOP_COMMON_MODULE: 'sopCommonModule',
-  PET_ISOTOPE_MODULE: 'petIsotopeModule',
-  OVERLAY_PLANE_MODULE: 'overlayPlaneModule',
-
-  // react-cornerstone-viewport specifc
-  PATIENT_MODULE: 'patientModule',
-  GENERAL_IMAGE_MODULE: 'generalImageModule',
-  GENERAL_STUDY_MODULE: 'generalStudyModule',
-  CINE_MODULE: 'cineModule',
 };
 
 export const INSTANCE = 'instance';
