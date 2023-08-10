@@ -1,12 +1,11 @@
 import * as cornerstoneTools from '@cornerstonejs/tools';
 
 import { Cornerstone3dReactViewportProps } from '../../Cornerstone3dReactViewportProps';
-import { IToolGroup } from '@cornerstonejs/tools/dist/esm/types';
-import { BaseTool } from '@cornerstonejs/tools';
+import { BaseTool, Types as CSToolsTypes } from '@cornerstonejs/tools';
 import { setToolMode } from './setToolMode';
 
 export function addTools(
-  toolGroup: IToolGroup,
+  toolGroup: CSToolsTypes.IToolGroup,
   newTools: Cornerstone3dReactViewportProps['tools'] = []
 ) {
   for (const newTool of newTools) {
