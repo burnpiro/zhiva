@@ -1,8 +1,5 @@
 import { Cornerstone3dReactViewportProps } from '../../Cornerstone3dReactViewportProps';
-import {
-  IToolGroup,
-  ToolOptionsType,
-} from '@cornerstonejs/tools/dist/esm/types';
+import { Types as CSToolsTypes } from '@cornerstonejs/tools';
 
 export function getAddedTools(
   newTools: Cornerstone3dReactViewportProps['tools'],
@@ -27,7 +24,7 @@ export function getRemovedTools(
 export function getModifiedTools(
   newTools: Cornerstone3dReactViewportProps['tools'],
   oldTools: [string, any][], //Cornerstone should export IBaseTool
-  oldToolsOptions: Record<string, ToolOptionsType>
+  oldToolsOptions: Record<string, CSToolsTypes.ToolOptionsType>
 ) {
   return newTools?.filter((newTool) =>
     oldTools.some(([prevToolKey, prevTool]) => {
@@ -42,7 +39,7 @@ export function getModifiedTools(
 }
 
 export function getToolDiff(
-  toolGroup: IToolGroup,
+  toolGroup: CSToolsTypes.IToolGroup,
   newTools: Cornerstone3dReactViewportProps['tools']
 ): {
   added: Cornerstone3dReactViewportProps['tools'];
