@@ -1,19 +1,14 @@
 import { Cornerstone3dReactViewportProps } from '../../Cornerstone3dReactViewportProps';
-import { ToolGroupManager } from '@cornerstonejs/tools';
-import {
-  IStackViewport,
-  IVolumeViewport,
-} from '@cornerstonejs/core/dist/esm/types';
-import { RenderingEngine } from '@cornerstonejs/core';
+import { ToolGroupManager, Types as CSToolsTypes } from '@cornerstonejs/tools';
+import { RenderingEngine, Types as CSTypes } from '@cornerstonejs/core';
 import { v4 as uuidv4 } from 'uuid';
 import { getToolDiff } from './getToolDiff';
-import { IToolGroup } from '@cornerstonejs/tools/dist/esm/types';
 import { addTools } from './addTools';
 import { removeTools } from './removeTools';
 import { modifyTools } from './modifyTools';
 
 export async function synchronizeTools(
-  viewport: IStackViewport | IVolumeViewport,
+  viewport: CSTypes.IStackViewport | CSTypes.IVolumeViewport,
   renderingEngine: RenderingEngine,
   newTools: Cornerstone3dReactViewportProps['tools'],
   toolGroup: Cornerstone3dReactViewportProps['toolGroup']
@@ -30,20 +25,19 @@ export async function synchronizeTools(
   }
 
   if (newTools && toolGroup) {
-    // Create ToolGroup with given ID if it doesn't exists inside manager
+    // Create ToolGroup with given ID if it doesn't exist inside manager
     toolGroupInstance =
       ToolGroupManager.getToolGroup(toolGroup.id) ||
       ToolGroupManager.createToolGroup(toolGroup.id);
 
     const { added, removed, modified } = getToolDiff(
-      toolGroupInstance as IToolGroup,
+      toolGroupInstance as CSToolsTypes.IToolGroup,
       newTools
     );
 
-    addTools(toolGroupInstance as IToolGroup, added);
-    removeTools(toolGroupInstance as IToolGroup, removed);
-    modifyTools(toolGroupInstance as IToolGroup, modified);
-    console.log(added, removed, modified);
+    addTools(toolGroupInstance as CSToolsTypes.IToolGroup, added);
+    removeTools(toolGroupInstance as CSToolsTypes.IToolGroup, removed);
+    modifyTools(toolGroupInstance as CSToolsTypes.IToolGroup, modified);
   }
 
   if (newTools && !toolGroup) {
@@ -56,7 +50,7 @@ export async function synchronizeTools(
     if (!toolGroupInstance) {
       toolGroupInstance = ToolGroupManager.createToolGroup(uuidv4());
 
-      addTools(toolGroupInstance as IToolGroup, newTools);
+      addTools(toolGroupInstance as CSToolsTypes.IToolGroup, newTools);
     } else {
       const { added, removed, modified } = getToolDiff(
         toolGroupInstance,
@@ -73,7 +67,6 @@ export async function synchronizeTools(
     toolGroupInstance &&
     !toolGroupInstance.getViewportIds().includes(viewport.id)
   ) {
-    console.log('add instance')
     toolGroupInstance.addViewport(viewport.id, renderingEngine.id);
   }
 

@@ -1,16 +1,18 @@
-import { IToolGroup } from '@cornerstonejs/tools/dist/esm/types';
 import { setToolMode } from './setToolMode';
-import { ToolModes } from '@cornerstonejs/tools/dist/esm/enums';
+import {
+  Types as CSToolsTypes,
+  Enums as CSToolsEnums,
+} from '@cornerstonejs/tools';
 
 export function removeTools(
-  toolGroup: IToolGroup,
+  toolGroup: CSToolsTypes.IToolGroup,
   newTools: [toolKey: string, tool: any][] = []
 ) {
   for (const [toolKey, tool] of newTools) {
     try {
       // There is no remove option in ToolGroup, we can only disable it
       setToolMode(
-        ToolModes.Disabled,
+        CSToolsEnums.ToolModes.Disabled,
         {
           ...tool,
           name: toolKey,

@@ -1,15 +1,17 @@
-import { MouseBindings, ToolModes } from '@cornerstonejs/tools/dist/esm/enums';
 import { Cornerstone3dReactViewportProps } from '../../Cornerstone3dReactViewportProps';
-import { ArrayElement } from '@zhiva/types';
-import { IToolGroup } from '@cornerstonejs/tools/dist/esm/types';
+import { ArrayElement } from '@zhiva/utils';
+import {
+  Types as CSToolsTypes,
+  Enums as CSToolsEnums,
+} from '@cornerstonejs/tools';
 
 export function setToolMode(
-  mode: ToolModes = ToolModes.Enabled,
+  mode: CSToolsEnums.ToolModes = CSToolsEnums.ToolModes.Enabled,
   tool: ArrayElement<Cornerstone3dReactViewportProps['tools']>,
-  toolGroup: IToolGroup
+  toolGroup: CSToolsTypes.IToolGroup
 ) {
   switch (mode) {
-    case ToolModes.Active:
+    case CSToolsEnums.ToolModes.Active:
       toolGroup.setToolActive(
         tool.name,
         tool.bindings
@@ -19,13 +21,13 @@ export function setToolMode(
           : undefined
       );
       break;
-    case ToolModes.Passive:
+    case CSToolsEnums.ToolModes.Passive:
       toolGroup.setToolPassive(tool.name);
       break;
-    case ToolModes.Disabled:
+    case CSToolsEnums.ToolModes.Disabled:
       toolGroup.setToolDisabled(tool.name);
       break;
-    case ToolModes.Enabled:
+    case CSToolsEnums.ToolModes.Enabled:
     default:
       toolGroup.setToolEnabled(tool.name);
       break;
