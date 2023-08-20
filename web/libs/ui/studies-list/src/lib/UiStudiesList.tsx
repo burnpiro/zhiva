@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { StudiesList, StudyObj } from '@zhiva/types';
+import { StudiesList, StudyObj } from '@zhiva/utils';
 import { DataFileDef, filterColumnElements } from './columnFilter';
 import DicomRow from './DicomRow/DicomRow';
 
@@ -75,7 +75,7 @@ export function UiStudiesList({ studies, onStudySelect }: UiStudiesListProps) {
           <TableRow>
             <TableCell />
             {columns.filter(columnFilter).map((column) => (
-              <TableCell key={column.key} align="left">
+              <TableCell key={column.key as string} align="left">
                 {column.header}
               </TableCell>
             ))}
