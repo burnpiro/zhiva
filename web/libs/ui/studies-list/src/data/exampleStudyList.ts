@@ -1,4 +1,4 @@
-import { StudiesList } from '@zhiva/types';
+import { StudiesList } from '@zhiva/utils';
 
 export const studyList: StudiesList = new Map([
   [
