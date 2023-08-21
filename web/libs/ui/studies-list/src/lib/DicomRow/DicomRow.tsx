@@ -12,7 +12,7 @@ import OpenIcon from '@mui/icons-material/Launch';
 import { styled } from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { StudyObj } from '@zhiva/types';
+import { StudyObj } from '@zhiva/utils';
 import { Typography } from '@zhiva/ui-components';
 
 import { DataFileDef } from '../columnFilter';
