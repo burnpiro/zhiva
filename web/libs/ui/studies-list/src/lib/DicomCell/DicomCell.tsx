@@ -1,8 +1,8 @@
 import TableCell, { TableCellProps } from '@mui/material/TableCell';
 import Tooltip from '@mui/material/Tooltip';
 import Chip from '@mui/material/Chip';
-import { MODALITIES } from '@zhiva/shared/constants';
-import { Modality } from '@zhiva/types';
+import { MODALITIES } from '@zhiva/utils';
+import { Modality } from '@zhiva/utils';
 import { formatDA } from '@zhiva/utils-cornerstone';
 
 interface DateCellProps {

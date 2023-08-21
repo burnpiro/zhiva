@@ -1,4 +1,4 @@
-import {StudyObj} from "@zhiva/types";
+import {StudyObj} from "@zhiva/utils";
 import {DicomCellProps} from "./DicomCell/DicomCell";
 
 export type DataFileDef = {
