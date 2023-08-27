@@ -1,11 +1,11 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { CornerstoneToolNames, ElementTypes } from '@zhiva/shared/constants';
+import { CornerstoneToolNames, ElementTypes } from '@zhiva/utils';
 import ToolButton, { ToolButtonProps } from '../ToolButton/ToolButton';
 import { Divider } from '@mui/material';
 import { isTouchDevice, useDevice } from 'use-ua-parser-js';
 import MenuSelector, { MenuSelectorProps } from '../MenuSelector/MenuSelector';
-import { DicomMenuItem } from '@zhiva/types';
+import { DicomMenuItem } from '@zhiva/utils';
 
 const StyledBox = styled(Box)(({ theme }) => ({
   // width: 'fit-content',

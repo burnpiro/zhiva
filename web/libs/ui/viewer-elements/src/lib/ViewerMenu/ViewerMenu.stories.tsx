@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ViewerMenu } from './ViewerMenu';
-import { CornerstoneToolNames } from '../../../../../shared/constants/src';
+import { CornerstoneToolNames } from '../../../../../utils/src/constants';
 import { DefaultMenuElements } from '@zhiva/react-contexts';
 
 export default {

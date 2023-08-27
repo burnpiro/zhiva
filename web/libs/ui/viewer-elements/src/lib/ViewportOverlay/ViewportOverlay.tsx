@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { metaData } from '@cornerstonejs/core';
 import { formatDA, formatPN, formatTM } from '@zhiva/utils-cornerstone';
 import { getCompression } from './helpers/getCompression';
-import { WADO_IMAGE_LOADER_TAGS } from '@zhiva/shared/constants';
+import { WADO_IMAGE_LOADER_TAGS } from '@zhiva/utils';
 
 const PREFIX = 'ViewportOverlay';
 

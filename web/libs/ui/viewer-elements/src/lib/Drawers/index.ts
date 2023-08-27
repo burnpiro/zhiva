@@ -1,1 +1,3 @@
-export * from './SeriesDrawer/SeriesDrawer';
+export * from './SeriesDrawer';
+export * from './SegmentationDrawer';
+export * from './AnnotationDrawer';

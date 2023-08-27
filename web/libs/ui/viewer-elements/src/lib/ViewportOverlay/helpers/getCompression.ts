@@ -2,7 +2,7 @@ import { metaData } from '@cornerstonejs/core';
 import {
   formatNumberPrecision,
 } from '@zhiva/utils-cornerstone';
-import {WADO_IMAGE_LOADER_TAGS} from "@zhiva/shared/constants";
+import {WADO_IMAGE_LOADER_TAGS} from "@zhiva/utils";
 
 export function getCompression(imageId: string) {
   const {

@@ -9,7 +9,7 @@ import { styled } from '@mui/material/styles';
 
 import { IconButton, SelectChangeEvent } from '@zhiva/ui-components';
 import { ToolButton } from '@zhiva/viewer-elements';
-import { MenuItems, ToolDisplayNames } from '@zhiva/shared/constants';
+import { MenuItems, ToolDisplayNames } from '@zhiva/utils';
 
 import FrameRateSelect from './FrameRateSelect';
 

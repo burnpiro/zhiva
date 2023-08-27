@@ -10,10 +10,11 @@ import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 import HeightIcon from '@mui/icons-material/Height';
 import Crop54Icon from '@mui/icons-material/Crop54';
 import Brush from '@mui/icons-material/Brush';
+import TextRotateVerticalIcon from '@mui/icons-material/TextRotateVertical';
 
 import { ScrollIcon, PolygonIcon } from '@zhiva/ui-components';
-import { ToolTypes } from '@zhiva/types';
-import { CornerstoneToolNames } from '@zhiva/shared/constants';
+import { ToolTypes } from '@zhiva/utils';
+import { CornerstoneToolNames } from '@zhiva/utils';
 
 export interface ToolButtonProps {
   name: string;
@@ -40,6 +41,7 @@ export const ToolIcons: Record<string, React.ElementType> = {
   [CornerstoneToolNames.RectangleROI]: Crop54Icon,
   [CornerstoneToolNames.PlanarFreehandROI]: PolygonIcon,
   [CornerstoneToolNames.Brush]: Brush,
+  [CornerstoneToolNames.ArrowAnnotate]: TextRotateVerticalIcon,
 };
 
 export function ToolButton({

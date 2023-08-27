@@ -3,7 +3,7 @@ import { ToolButton, ToolIcons } from './ToolButton';
 import {
   CornerstoneToolNames,
   ToolDisplayNames,
-} from '../../../../../shared/constants/src';
+} from '../../../../../utils/src/constants';
 import MemoryIcon from '@mui/icons-material/Memory';
 import ComputerIcon from '@mui/icons-material/Computer';
 import React from 'react';
