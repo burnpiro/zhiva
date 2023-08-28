@@ -10,7 +10,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { utilities, imageLoader } from '@cornerstonejs/core';
-import { InstanceElement } from '@zhiva/types';
+import { InstanceElement } from '@zhiva/utils';
 
 interface SeriesPreviewProps {
   instance: InstanceElement;

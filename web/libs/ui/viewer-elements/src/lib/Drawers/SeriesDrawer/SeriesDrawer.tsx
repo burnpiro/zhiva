@@ -1,8 +1,8 @@
-import { InstanceElement, SeriesElement, SeriesList } from '@zhiva/types';
+import { InstanceElement, SeriesElement, SeriesList } from '@zhiva/utils';
 import { Drawer } from '@zhiva/ui-components';
 import { RefObject } from 'react';
 import SeriesPreview from './SeriesPreview';
-import { DrawerWidths } from '@zhiva/shared/constants';
+import { DrawerWidths } from '@zhiva/utils';
 
 /* eslint-disable-next-line */
 export interface SeriesDrawerProps {
