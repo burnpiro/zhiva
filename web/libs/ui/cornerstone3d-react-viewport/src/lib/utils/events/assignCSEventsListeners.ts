@@ -1,18 +1,15 @@
-import {
-  addInternalCSEvents,
-  removeInternalCSEvents,
-} from './handleInternalCSEvents';
-import { Events } from '@cornerstonejs/core/dist/esm/enums';
+import { Enums as CSEnums } from '@cornerstonejs/core';
+import {addInternalCSEvents, removeInternalCSEvents} from "@zhiva/utils-cornerstone";
 
 export function assignCSEventsListeners(callback: (event: any) => void) {
   return () => {
     addInternalCSEvents([
       {
-        event: Events.IMAGE_LOADED,
+        event: CSEnums.Events.IMAGE_LOADED,
         callback: callback,
       },
       {
-        event: Events.IMAGE_LOAD_ERROR,
+        event: CSEnums.Events.IMAGE_LOAD_ERROR,
         callback: callback,
       },
     ]);
@@ -20,11 +17,11 @@ export function assignCSEventsListeners(callback: (event: any) => void) {
     return () => {
       removeInternalCSEvents([
         {
-          event: Events.IMAGE_LOADED,
+          event: CSEnums.Events.IMAGE_LOADED,
           callback: callback,
         },
         {
-          event: Events.IMAGE_LOAD_ERROR,
+          event: CSEnums.Events.IMAGE_LOAD_ERROR,
           callback: callback,
         },
       ]);

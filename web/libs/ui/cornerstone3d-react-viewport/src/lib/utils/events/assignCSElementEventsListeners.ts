@@ -1,9 +1,9 @@
 import {
   addElementCSEvents,
   removeElementCSEvents,
-} from './handleInternalCSElementEvents';
-import { Enums, utilities } from '@cornerstonejs/tools';
-import {Events} from "@cornerstonejs/core/dist/esm/enums";
+} from '@zhiva/utils-cornerstone';
+import { utilities } from '@cornerstonejs/tools';
+import { Enums as CSEnums } from '@cornerstonejs/core';
 
 export function assignCSElementEventsListeners(
   callback: (event: any) => void,
@@ -22,19 +22,19 @@ export function assignCSElementEventsListeners(
             callback: callback,
           },
           {
-            event: Events.IMAGE_RENDERED,
+            event: CSEnums.Events.IMAGE_RENDERED,
             callback: callback,
           },
           {
-            event: Events.CAMERA_MODIFIED,
+            event: CSEnums.Events.CAMERA_MODIFIED,
             callback: callback,
           },
           {
-            event: Events.VOI_MODIFIED,
+            event: CSEnums.Events.VOI_MODIFIED,
             callback: callback,
           },
           {
-            event: Events.STACK_NEW_IMAGE,
+            event: CSEnums.Events.STACK_NEW_IMAGE,
             callback: callback,
           },
         ],
@@ -55,19 +55,19 @@ export function assignCSElementEventsListeners(
               callback: callback,
             },
             {
-              event: Events.IMAGE_RENDERED,
+              event: CSEnums.Events.IMAGE_RENDERED,
               callback: callback,
             },
             {
-              event: Events.CAMERA_MODIFIED,
+              event: CSEnums.Events.CAMERA_MODIFIED,
               callback: callback,
             },
             {
-              event: Events.VOI_MODIFIED,
+              event: CSEnums.Events.VOI_MODIFIED,
               callback: callback,
             },
             {
-              event: Events.STACK_NEW_IMAGE,
+              event: CSEnums.Events.STACK_NEW_IMAGE,
               callback: callback,
             },
           ],
