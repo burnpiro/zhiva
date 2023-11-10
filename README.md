@@ -1,3 +1,3 @@
 # zhiva
 
-Medical AI visualization tool
+Tool for developing and testing Medical AI
