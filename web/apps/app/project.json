@@ -9,6 +9,7 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
+        "deployUrl": "https://burnpiro.github.io/zhiva/",
         "outputPath": "dist/apps/app",
         "index": "apps/app/src/index.html",
         "baseHref": "/",
