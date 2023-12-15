@@ -15,14 +15,15 @@ jobs:
         with:
           node-version: '16'
       - name: Install 🔧
+        working-directory: ./web
         run: |
-          cd web
           npm install --frozen-lockfile
       - name: Build 🔨
+        working-directory: ./web
         run: |
           npm run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: dist/apps/app # The folder the action should deploy.
+          folder: web/dist/apps/app # The folder the action should deploy.
