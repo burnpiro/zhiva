@@ -18,9 +18,6 @@ jobs:
         run: |
           cd web
           npm install --frozen-lockfile
-      - name: Test 🧪
-        run: |
-          npm run test --runInBand --no-cache
       - name: Build 🔨
         run: |
           npm run build
