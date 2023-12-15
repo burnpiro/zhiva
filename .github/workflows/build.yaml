@@ -1,0 +1,31 @@
+name: Build to GH Pages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+      - name: Select node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install 🔧
+        run: |
+          cd web
+          npm install --frozen-lockfile
+      - name: Test 🧪
+        run: |
+          npm run test --runInBand --no-cache
+      - name: Build 🔨
+        run: |
+          npm run build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist/apps/app # The folder the action should deploy.
