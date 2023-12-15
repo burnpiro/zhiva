@@ -82,6 +82,7 @@ export function UiDicomDropzone({
 }: UiDicomDropzoneProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isQueued, setIsQueued] = useState<boolean>(false);
   const { state, dispatch, queueFiles } = useContext(FilesContext);
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -154,7 +155,7 @@ export function UiDicomDropzone({
         <input {...getInputProps()} />
         <p>{title}</p>
       </DropContainer>
-      {(state.isLoading || state.loadedFiles.size > 0) && (
+      {(state.isLoading || state.filesToLoad.size > 0) && (
         <LinearProgressWithLabel
           color={
             state.loadedFiles.size ===

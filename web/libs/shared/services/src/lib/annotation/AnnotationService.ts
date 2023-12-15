@@ -27,21 +27,17 @@ class AnnotationService {
   }
 
   public getAnnotationManager() {
-    const enabledElement = getEnabledElement(this.csElement);
-    return annotation.state.getViewportSpecificAnnotationManager(
-      enabledElement
-    );
+    return annotation.state.getAnnotationManager();
   }
 
   public getAnnotations(): CSToolsTypes.Annotation[] {
     const enabledElement = getEnabledElement(this.csElement);
     if (enabledElement) {
-      const annotationManager =
-        annotation.state.getViewportSpecificAnnotationManager(enabledElement);
+      const annotationManager = annotation.state.getAnnotationManager();
       const { FrameOfReferenceUID, viewport } = enabledElement;
 
       const frameOfReferenceSpecificAnnotations =
-        annotationManager.getFrameOfReferenceAnnotations(FrameOfReferenceUID);
+        annotationManager.getAnnotations(FrameOfReferenceUID);
 
       const allAnnotations = frameOfReferenceSpecificAnnotations
         ? Object.values(frameOfReferenceSpecificAnnotations).reduce(
@@ -54,13 +50,13 @@ class AnnotationService {
         utilities.planar.filterAnnotationsForDisplay(
           viewport,
           allAnnotations.filter(
-            (el) =>
+            (el: any) =>
               el.metadata.toolName !== CornerstoneToolNames.PlanarFreehandROI
           )
         );
 
       let polygonAnnotations = allAnnotations.filter(
-        (el) => el.metadata.toolName === CornerstoneToolNames.PlanarFreehandROI
+        (el: any) => el.metadata.toolName === CornerstoneToolNames.PlanarFreehandROI
       ) as CSToolsTypes.ToolSpecificAnnotationTypes.PlanarFreehandROIAnnotation[];
 
       if (polygonAnnotations.length > 0) {
@@ -86,10 +82,7 @@ class AnnotationService {
   }
 
   public setAnnotationLabel(annotationId: string, label: string) {
-    const currAnnotation = annotation.state.getAnnotation(
-      annotationId,
-      this.csElement
-    );
+    const currAnnotation = annotation.state.getAnnotation(annotationId);
 
     currAnnotation.data['text'] = label;
 
@@ -110,10 +103,7 @@ class AnnotationService {
   }
 
   public setAnnotationVisibility(annotationId: string, checked: boolean) {
-    const currAnnotation = annotation.state.getAnnotation(
-      annotationId,
-      this.csElement
-    );
+    const currAnnotation = annotation.state.getAnnotation(annotationId);
     annotation.visibility.setAnnotationVisibility(annotationId, checked);
     this.renderViewportsForTool(currAnnotation.metadata.toolName);
   }
@@ -121,12 +111,11 @@ class AnnotationService {
   public hideAllAnnotations() {
     const enabledElement = getEnabledElement(this.csElement);
     if (enabledElement) {
-      const annotationManager =
-        annotation.state.getViewportSpecificAnnotationManager(enabledElement);
+      const annotationManager = annotation.state.getAnnotationManager();
       const { FrameOfReferenceUID, viewport } = enabledElement;
 
       const frameOfReferenceSpecificAnnotations =
-        annotationManager.getFrameOfReferenceAnnotations(FrameOfReferenceUID);
+        annotationManager.getAnnotations(FrameOfReferenceUID);
 
       const allAnnotations = frameOfReferenceSpecificAnnotations
         ? Object.values(frameOfReferenceSpecificAnnotations).reduce(
@@ -149,10 +138,7 @@ class AnnotationService {
   }
 
   public setSelectedAnnotation(annotationId: string) {
-    const currAnnotation = annotation.state.getAnnotation(
-      annotationId,
-      this.csElement
-    );
+    const currAnnotation = annotation.state.getAnnotation(annotationId);
     annotation.selection.setAnnotationSelected(annotationId, true);
     this.renderViewportsForTool(currAnnotation.metadata.toolName);
   }
@@ -174,12 +160,9 @@ class AnnotationService {
   }
 
   public deleteAnnotation(annotationId: string) {
-    const currAnnotation = annotation.state.getAnnotation(
-      annotationId,
-      this.csElement
-    );
+    const currAnnotation = annotation.state.getAnnotation(annotationId);
 
-    annotation.state.removeAnnotation(annotationId, this.csElement);
+    annotation.state.removeAnnotation(annotationId);
     this.renderViewportsForTool(currAnnotation.metadata.toolName);
   }
 

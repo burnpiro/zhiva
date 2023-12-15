@@ -8,7 +8,7 @@ import { removeTools } from './removeTools';
 import { modifyTools } from './modifyTools';
 
 export async function synchronizeTools(
-  viewport: CSTypes.IStackViewport | CSTypes.IVolumeViewport,
+  viewport: CSTypes.IViewport,
   renderingEngine: RenderingEngine,
   newTools: Cornerstone3dReactViewportProps['tools'],
   toolGroup: Cornerstone3dReactViewportProps['toolGroup']

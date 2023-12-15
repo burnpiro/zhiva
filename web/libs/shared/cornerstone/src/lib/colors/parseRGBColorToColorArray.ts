@@ -1,6 +1,6 @@
-import { Types as CSToolsTypes } from '@cornerstonejs/tools';
+import { Types as CSTypes } from '@cornerstonejs/core';
 
-export function parseRGBColorToColorArray(color: string): CSToolsTypes.Color {
+export function parseRGBColorToColorArray(color: string): CSTypes.Color {
   return [
     ...(color
       .replace(/[^\d,]/g, '')

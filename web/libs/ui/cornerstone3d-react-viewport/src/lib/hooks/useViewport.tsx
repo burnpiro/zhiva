@@ -7,9 +7,9 @@ export function useViewport(
   renderingEngine?: RenderingEngine,
   element?: RefObject<HTMLDivElement>,
   viewport?: Cornerstone3dReactViewportProps['viewport']
-): CSTypes.IStackViewport | CSTypes.IVolumeViewport | undefined {
+): CSTypes.IViewport | undefined {
   const [viewportInstance, setViewportInstance] = useState<
-    CSTypes.IStackViewport | CSTypes.IVolumeViewport
+    CSTypes.IViewport
   >();
 
   useEffect(() => {

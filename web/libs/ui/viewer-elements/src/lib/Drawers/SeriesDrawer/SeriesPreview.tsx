@@ -28,7 +28,7 @@ const PerformanceProgress = styled(LinearProgress)(({ theme }) => ({
 
 const imageWidth = 210;
 const imageHeight = 150;
-let prevProg: Record<string, number> = {};
+const prevProg: Record<string, number> = {};
 
 const SeriesPreview: FC<SeriesPreviewProps> = ({
   instance,
@@ -43,8 +43,7 @@ const SeriesPreview: FC<SeriesPreviewProps> = ({
   useEffect(() => {
     const loadImage = async () => {
       if (instance.imageId && canvasRef.current) {
-        const image = await imageLoader.loadAndCacheImage(instance.imageId);
-        utilities.renderToCanvas(canvasRef.current, image);
+        utilities.loadImageToCanvas({ canvas: canvasRef.current, imageId: instance.imageId});
         setLoading(false);
       }
     };

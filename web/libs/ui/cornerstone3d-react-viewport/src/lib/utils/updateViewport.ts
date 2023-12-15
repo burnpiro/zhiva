@@ -6,7 +6,7 @@ import { utilities } from '@cornerstonejs/tools';
 import { updateVolumes } from './viewport/updateVolumes';
 
 export async function updateViewport(
-  viewport: CSTypes.IStackViewport | CSTypes.IVolumeViewport,
+  viewport: CSTypes.IViewport,
   renderingEngine: RenderingEngine,
   props: Cornerstone3dReactViewportProps,
   viewportElement: HTMLDivElement,

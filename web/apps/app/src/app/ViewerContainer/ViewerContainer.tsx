@@ -44,7 +44,7 @@ const ENGINE_ID = 'ENGINE_ID';
 const VIEWPORT_ID = 'VIEWPORT_ID';
 
 export function ViewerContainer() {
-  let { studyId = '' } = useParams();
+  const { studyId = '' } = useParams();
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const annotationService = useRef<AnnotationService | null>(null);

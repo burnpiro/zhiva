@@ -1,7 +1,7 @@
-import { Types as CSToolTypes } from '@cornerstonejs/tools';
+import { Types as CSTypes } from '@cornerstonejs/core';
 
 export type BrushColorClass = {
-  color: CSToolTypes.Color;
+  color: CSTypes.Color;
   name: string;
   classId: string;
   activeLabelmapIndex: number;

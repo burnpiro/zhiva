@@ -1,4 +1,4 @@
-import { Types as CSToolTypes } from '@cornerstonejs/tools';
+import { Types as CSTypes } from '@cornerstonejs/core';
 
 export enum ColorClassSources {
   DMC = 'dcm',
@@ -7,4 +7,4 @@ export enum ColorClassSources {
   SETTING = 'setting',
 }
 
-export const DEFAULT_COLOR: CSToolTypes.Color = [221, 84, 84, 255];
+export const DEFAULT_COLOR: CSTypes.Color = [221, 84, 84, 255];

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as cornerstoneTools from '@cornerstonejs/tools';
-import { Types as CSToolsTypes } from '@cornerstonejs/tools';
+import { Types as CSTypes } from '@cornerstonejs/core';
 import { BrushColorClass } from '@zhiva/utils';
 import { Enums as CSToolsEnums } from '@cornerstonejs/tools';
 import { Enums as CSEnums } from '@cornerstonejs/core';
@@ -11,7 +11,7 @@ import {
 const { segmentation } = cornerstoneTools;
 
 type SegmentationState = {
-  colorLUT: CSToolsTypes.Color[];
+  colorLUT: CSTypes.Color[];
   activeSegmentations: string[];
   classes: BrushColorClass[];
   selectedSegmentations: string[];
@@ -37,7 +37,7 @@ export function useSegmentationState(toolGroupId: string): SegmentationState {
       const activeSegmentations = currentState.toolGroups[
         toolGroupId
       ].segmentationRepresentations
-        .filter((segRep) => segRep.visibility === true)
+        // .filter((segRep) => segRep.segmentsHidden === false)
         .map((segRep) => segRep.segmentationId);
       // console.log(currentState);
 

@@ -5,6 +5,7 @@ export enum FileActionTypes {
   SET_FILES_TO_LOAD = 'SET_FILES_TO_LOAD',
   ADD_FILES_TO_LOAD = 'ADD_FILES_TO_LOAD',
   REMOVE_FILES_TO_LOAD = 'REMOVE_FILES_TO_LOAD',
+  SET_LOADED_FILES = 'SET_LOADED_FILES',
   ADD_LOADED_FILES = 'ADD_LOADED_FILES',
   REMOVE_LOADED_FILES = 'REMOVE_LOADED_FILES',
   SET_LOADING = 'SET_LOADING',
@@ -27,6 +28,9 @@ type FilesPayload = {
   };
   [FileActionTypes.REMOVE_FILES_TO_LOAD]: {
     files: string[];
+  };
+  [FileActionTypes.SET_LOADED_FILES]: {
+    files: [string, InstanceMetadata][];
   };
   [FileActionTypes.ADD_LOADED_FILES]: {
     files: [string, InstanceMetadata][];
@@ -74,6 +78,11 @@ export const filesReducer = (state: FilesState, action: FilesActions): FilesStat
             (el: File) => !action.payload.files.includes(el.name)
           )
         ),
+      };
+    case FileActionTypes.SET_LOADED_FILES:
+      return {
+        ...state,
+        loadedFiles: new Map([...action.payload.files]),
       };
     case FileActionTypes.ADD_LOADED_FILES:
       if (state.loadedFiles.size > 0) {
