@@ -22,5 +22,8 @@ npx nx serve app
 ```
 for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Library
+## Library TODO
+
+To develop the library please go to the [`./src/`](https://github.com/burnpiro/zhiva/tree/master/src) section
+
 
