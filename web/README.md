@@ -6,6 +6,17 @@
 
 Run `npx nx build app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+### SharedArrayBuffer
+
+This application is using [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) to improve performance in WebWorkers. Please make sure to add:
+
+```
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+```
+
+headers when deploying in on something else than `localhost`.
+
 ## Development server
 
 Run `npx nx serve app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
